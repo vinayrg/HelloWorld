@@ -43,7 +43,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // Add fade-up class to animatable elements
 document.querySelectorAll(
-    ".feature-card, .step-card, .use-case-card, .pricing-card, .section-header"
+    ".feature-card, .step-card, .use-case-card, .pricing-card, .value-card, .section-header"
 ).forEach((el, i) => {
     el.classList.add("fade-up");
     el.style.transitionDelay = `${(i % 6) * 0.08}s`;
@@ -91,7 +91,7 @@ window.addEventListener("scroll", () => {
 
         if (link) {
             if (scrollY >= top && scrollY < top + height) {
-                link.style.color = "#6C5CE7";
+                link.style.color = "#a78bfa";
             } else {
                 link.style.color = "";
             }
