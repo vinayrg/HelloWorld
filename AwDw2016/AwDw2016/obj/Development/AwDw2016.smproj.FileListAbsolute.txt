@@ -1,7 +1,0 @@
-C:\Users\vinay\source\repos\AwDw2016\AwDw2016\bin\Model.asdatabase
-C:\Users\vinay\source\repos\AwDw2016\AwDw2016\bin\Model.deploymenttargets
-C:\Users\vinay\source\repos\AwDw2016\AwDw2016\bin\Model.deploymentoptions
-C:\Users\vinay\source\repos\AwDw2016\AwDw2016\obj\Development\AwDw2016.smproj.CoreCompileInputs.cache
-C:\Users\vinay\source\repos\AwDw2016\AwDw2016\obj\Development\Model.asdatabase
-C:\Users\vinay\source\repos\AwDw2016\AwDw2016\obj\Development\Model.deploymentoptions
-C:\Users\vinay\source\repos\AwDw2016\AwDw2016\obj\Development\Model.deploymenttargets
