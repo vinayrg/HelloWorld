@@ -11,6 +11,181 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Valentine's Day Message - Auto-expires after Feb 15, 2026 midnight -->
+    <div id="valentineOverlay" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 99999;
+        background: linear-gradient(135deg, #1a0a0e 0%, #2d0a1a 20%, #4a0e2a 40%, #2d0a1a 60%, #1a0a0e 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        font-family: 'Inter', sans-serif;
+    ">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+            @keyframes floatHeart {
+                0% { transform: translateY(100vh) rotate(0deg) scale(0); opacity: 0; }
+                10% { opacity: 1; transform: translateY(80vh) rotate(20deg) scale(1); }
+                90% { opacity: 0.8; }
+                100% { transform: translateY(-10vh) rotate(-20deg) scale(0.5); opacity: 0; }
+            }
+
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.08); }
+            }
+
+            @keyframes shimmer {
+                0% { background-position: -200% center; }
+                100% { background-position: 200% center; }
+            }
+
+            @keyframes fadeInUp {
+                from { opacity: 0; transform: translateY(40px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            @keyframes glowPulse {
+                0%, 100% { box-shadow: 0 0 30px rgba(255, 50, 100, 0.3), 0 0 60px rgba(255, 50, 100, 0.1); }
+                50% { box-shadow: 0 0 50px rgba(255, 50, 100, 0.5), 0 0 100px rgba(255, 50, 100, 0.2); }
+            }
+
+            .valentine-heart {
+                position: absolute;
+                color: rgba(255, 80, 120, 0.15);
+                font-size: 24px;
+                animation: floatHeart linear infinite;
+                pointer-events: none;
+                user-select: none;
+            }
+
+            .valentine-main-heart {
+                font-size: 80px;
+                animation: pulse 2s ease-in-out infinite;
+                margin-bottom: 20px;
+                filter: drop-shadow(0 0 30px rgba(255, 50, 100, 0.6));
+                opacity: 0;
+                animation: pulse 2s ease-in-out infinite, fadeInUp 1s ease-out 0.3s forwards;
+            }
+
+            .valentine-message {
+                font-family: 'Great Vibes', cursive;
+                font-size: clamp(2.5rem, 7vw, 5.5rem);
+                color: transparent;
+                background: linear-gradient(90deg, #ff6b9d, #ff3366, #ff6b9d, #ffd4e0, #ff3366, #ff6b9d);
+                background-size: 200% auto;
+                -webkit-background-clip: text;
+                background-clip: text;
+                animation: shimmer 4s linear infinite, fadeInUp 1s ease-out 0.6s forwards;
+                text-align: center;
+                line-height: 1.3;
+                padding: 0 20px;
+                max-width: 900px;
+                opacity: 0;
+                text-shadow: none;
+            }
+
+            .valentine-sub {
+                font-family: 'Great Vibes', cursive;
+                font-size: clamp(2rem, 5vw, 4rem);
+                color: transparent;
+                background: linear-gradient(90deg, #ffd4e0, #ff6b9d, #ffd4e0);
+                background-size: 200% auto;
+                -webkit-background-clip: text;
+                background-clip: text;
+                animation: shimmer 3s linear infinite, fadeInUp 1s ease-out 0.9s forwards;
+                margin-top: 10px;
+                opacity: 0;
+            }
+
+            .valentine-divider {
+                width: 200px;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, #ff3366, transparent);
+                margin: 30px 0;
+                opacity: 0;
+                animation: fadeInUp 1s ease-out 1.2s forwards;
+            }
+
+            .valentine-date {
+                font-family: 'Inter', sans-serif;
+                font-size: 14px;
+                color: rgba(255, 180, 200, 0.5);
+                letter-spacing: 4px;
+                text-transform: uppercase;
+                opacity: 0;
+                animation: fadeInUp 1s ease-out 1.5s forwards;
+            }
+
+            .valentine-enter-btn {
+                margin-top: 40px;
+                padding: 14px 40px;
+                background: linear-gradient(135deg, #ff3366, #ff6b9d);
+                color: white;
+                border: none;
+                border-radius: 50px;
+                font-family: 'Inter', sans-serif;
+                font-size: 16px;
+                font-weight: 500;
+                cursor: pointer;
+                letter-spacing: 1px;
+                opacity: 0;
+                animation: fadeInUp 1s ease-out 1.8s forwards, glowPulse 3s ease-in-out infinite 2.8s;
+                transition: transform 0.3s ease;
+            }
+
+            .valentine-enter-btn:hover {
+                transform: scale(1.05) !important;
+            }
+        </style>
+
+        <!-- Floating hearts background -->
+        <script>
+        (function() {
+            var overlay = document.getElementById('valentineOverlay');
+            var hearts = ['\u2764\uFE0F', '\uD83D\uDC95', '\uD83D\uDC96', '\uD83D\uDC97', '\uD83D\uDC98', '\uD83D\uDC9D', '\u2763\uFE0F', '\uD83E\uDE77'];
+            for (var i = 0; i < 30; i++) {
+                var heart = document.createElement('div');
+                heart.className = 'valentine-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.fontSize = (Math.random() * 30 + 14) + 'px';
+                heart.style.animationDuration = (Math.random() * 8 + 6) + 's';
+                heart.style.animationDelay = (Math.random() * 10) + 's';
+                overlay.appendChild(heart);
+            }
+        })();
+        </script>
+
+        <div class="valentine-main-heart">\u2764\uFE0F</div>
+        <div class="valentine-message">Hey Snigdha, Vinay Loves You so Much</div>
+        <div class="valentine-sub">Happy Valentine's Day</div>
+        <div class="valentine-divider"></div>
+        <div class="valentine-date">February 15, 2026</div>
+        <button class="valentine-enter-btn" onclick="document.getElementById('valentineOverlay').style.transition='opacity 1s';document.getElementById('valentineOverlay').style.opacity='0';setTimeout(function(){document.getElementById('valentineOverlay').style.display='none'},1000);">
+            Enter Site &rarr;
+        </button>
+    </div>
+
+    <!-- Auto-remove Valentine's overlay after midnight Feb 15, 2026 -->
+    <script>
+    (function() {
+        var expiry = new Date('2026-02-16T00:00:00');
+        var now = new Date();
+        if (now >= expiry) {
+            var overlay = document.getElementById('valentineOverlay');
+            if (overlay) overlay.remove();
+        }
+    })();
+    </script>
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
